@@ -30,9 +30,9 @@ Pourquoi ce fix:
 
 ## Pull Request
 
-PR URL: PENDING
+PR URL: https://github.com/jesda6200/taskflow/pull/3
 
 ## Nouveau run CI
 
-Run URL: PENDING
-Resultat: PENDING
+Run URL: https://github.com/jesda6200/taskflow/actions/runs/23726982982
+Resultat: SUCCESS
