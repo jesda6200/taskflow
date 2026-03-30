@@ -47,5 +47,6 @@ PR URL: https://github.com/jesda6200/taskflow/pull/3
 
 ## Runs CI (relancés)
 
-- Run push courant: https://github.com/jesda6200/taskflow/actions/runs/23727113037 (status: queued)
-- Run relancé explicitement: https://github.com/jesda6200/taskflow/actions/runs/23727003980 (status: queued)
+- Run push final (branche courante): https://github.com/jesda6200/taskflow/actions/runs/23727122561 (status: queued)
+- Run push précédent: https://github.com/jesda6200/taskflow/actions/runs/23727113037 (status: in_progress)
+- Run relancé explicitement: https://github.com/jesda6200/taskflow/actions/runs/23727003980 (status: in_progress)
