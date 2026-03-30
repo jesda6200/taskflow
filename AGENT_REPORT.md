@@ -2,24 +2,83 @@
 
 Date: 2026-03-30
 Agent: Codex (GPT-5)
-Mode: Audit en lecture seule, sans modification de code source.
+Projet: `/home/damien/.openclaw/workspace/projects/taskflow`
 
-## Actions exécutées
-1. Vérification de l'arborescence du répertoire cible.
-2. Recherche ciblée des artefacts:
-   - `Dockerfile*`
-   - `docker-compose*.yml|yaml`
-   - `compose*.yml|yaml`
-   - `*.sql`, `*.dump`
-3. Inventaire des conteneurs Docker locaux.
-4. Inventaire des images Docker locales.
+## Statut global
+- `Etape 1 (scaffold)`: completee
+- `Etape 2 (backend + prisma + auth + tests backend)`: completee
+- `Etape 3 (frontend + tests frontend)`: completee
+- `Etape 4 (commits atomiques)`: completee
+- `Etape 5 (push origin/main)`: a executer
 
-## Résultats clés
-- Répertoire projet vide.
-- Aucun artefact Docker trouvé dans le projet.
-- Aucun dump SQL/DUMP trouvé dans le projet.
-- Des conteneurs et images Docker locaux ont été inventoriés pour contexte.
+## Commits realises
+1. `feat(scaffold): initialize monorepo structure (apps/frontend, apps/backend, packages/shared)`
+2. `feat(api): implement backend core, prisma schema and auth`
+3. `feat(frontend): implement frontend pages and tests; test: add initial tests`
 
-## Contraintes / remarques
-- Aucune écriture hors des deux rapports demandés.
-- Aucun fichier existant du projet n'a été modifié.
+## Resultats des tests par etape
+### Apres commit 1
+Commande:
+```bash
+pnpm -r test
+```
+Resultat:
+- `OK` (aucun package encore present a ce stade)
+- sortie: `No projects matched the filters ...`
+
+### Apres commit 2
+Commandes:
+```bash
+pnpm --filter @taskflow/backend prisma:generate
+pnpm --filter @taskflow/backend test
+```
+Resultat:
+- `OK`
+- Jest: `3 passed, 3 total`
+  - `auth.flow.test.ts`
+  - `task.crud.test.ts`
+  - `project.access-control.test.ts`
+
+### Apres commit 3
+Commande:
+```bash
+pnpm --filter @taskflow/frontend test
+```
+Resultat:
+- `OK`
+- Vitest: `2 passed, 2 total`
+  - `login-form.test.tsx`
+  - `project-list.test.tsx`
+
+## Commandes locales (install / run / test)
+### Installation
+```bash
+pnpm install
+```
+
+### Lancer backend
+```bash
+cd apps/backend
+cp ../../.env.example .env
+pnpm dev
+```
+
+### Lancer frontend
+```bash
+cd apps/frontend
+pnpm dev
+```
+
+### Tests
+```bash
+pnpm --filter @taskflow/backend test
+pnpm --filter @taskflow/frontend test
+```
+
+## Variables d'environnement attendues
+Utiliser `.env.example` a la racine:
+- `DATABASE_URL`
+- `JWT_ACCESS_SECRET`
+- `JWT_REFRESH_SECRET`
+- `PORT`
+- `VITE_API_URL`
